@@ -7,383 +7,100 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg: #F7F5F0;
-    --surface: #FFFFFF;
-    --text: #1A1A1A;
-    --muted: #7A7A7A;
-    --accent: #2B5CE6;
-    --accent-light: #EEF2FF;
-    --border: #E2DDD6;
-    --success: #16A34A;
-    --radius: 14px;
+    --bg: #F7F5F0; --surface: #FFFFFF; --text: #1A1A1A;
+    --muted: #7A7A7A; --accent: #2B5CE6; --accent-light: #EEF2FF;
+    --border: #E2DDD6; --radius: 14px;
   }
-
   html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 0;
-  }
+  .hero { background: var(--text); color: #fff; padding: 56px 24px 48px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 120%, #2B5CE620 0%, transparent 70%); }
+  .hero-label { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #2B5CE6; background: #2B5CE615; border: 1px solid #2B5CE630; padding: 5px 14px; border-radius: 100px; margin-bottom: 20px; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; font-weight: 400; margin-bottom: 16px; }
+  .hero h1 em { font-style: italic; color: #7BA7FF; }
+  .hero p { font-size: 15px; color: #AAAAAA; max-width: 480px; margin: 0 auto; line-height: 1.7; font-weight: 300; }
+  .hero-meta { display: flex; justify-content: center; gap: 24px; margin-top: 28px; flex-wrap: wrap; }
+  .hero-meta span { font-size: 11px; color: #666; display: flex; align-items: center; gap: 6px; }
+  .hero-meta span::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #2B5CE6; display: block; }
 
-  /* Hero */
-  .hero {
-    background: var(--text);
-    color: #fff;
-    padding: 56px 24px 48px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 120%, #2B5CE620 0%, transparent 70%);
-  }
-  .hero-label {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #2B5CE6;
-    background: #2B5CE615;
-    border: 1px solid #2B5CE630;
-    padding: 5px 14px;
-    border-radius: 100px;
-    margin-bottom: 20px;
-  }
-  .hero h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2rem, 5vw, 3rem);
-    line-height: 1.15;
-    font-weight: 400;
-    margin-bottom: 16px;
-    letter-spacing: -0.01em;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: #7BA7FF;
-  }
-  .hero p {
-    font-size: 15px;
-    color: #AAAAAA;
-    max-width: 480px;
-    margin: 0 auto;
-    line-height: 1.7;
-    font-weight: 300;
-  }
-  .hero-meta {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    margin-top: 28px;
-    flex-wrap: wrap;
-  }
-  .hero-meta span {
-    font-size: 11px;
-    color: #666;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .hero-meta span::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #2B5CE6;
-    display: block;
-  }
+  .progress-wrap { background: var(--text); padding: 0 24px 20px; }
+  .progress-bar-track { max-width: 620px; margin: 0 auto; height: 2px; background: #333; border-radius: 2px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: #2B5CE6; border-radius: 2px; transition: width 0.4s ease; width: 0%; }
+  .progress-label { max-width: 620px; margin: 8px auto 0; display: flex; justify-content: space-between; font-size: 11px; color: #555; font-weight: 500; }
 
-  /* Progress */
-  .progress-wrap {
-    background: var(--text);
-    padding: 0 24px 20px;
-  }
-  .progress-bar-track {
-    max-width: 620px;
-    margin: 0 auto;
-    height: 2px;
-    background: #333;
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .progress-bar-fill {
-    height: 100%;
-    background: #2B5CE6;
-    border-radius: 2px;
-    transition: width 0.4s ease;
-    width: 0%;
-  }
-  .progress-label {
-    max-width: 620px;
-    margin: 8px auto 0;
-    display: flex;
-    justify-content: space-between;
-    font-size: 11px;
-    color: #555;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-  }
+  .form-wrap { max-width: 620px; margin: 0 auto; padding: 40px 20px 80px; }
+  .question-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 28px 24px; margin-bottom: 16px; opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .question-card.visible { opacity: 1; transform: translateY(0); }
+  .question-card:focus-within { border-color: #2B5CE640; box-shadow: 0 0 0 3px #2B5CE610; }
+  .q-number { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .q-text { font-size: 16px; font-weight: 500; line-height: 1.5; margin-bottom: 6px; }
+  .q-sub { font-size: 13px; color: var(--muted); margin-bottom: 18px; line-height: 1.6; }
+  .req { color: #E53E3E; margin-left: 2px; }
 
-  /* Form */
-  .form-wrap {
-    max-width: 620px;
-    margin: 0 auto;
-    padding: 40px 20px 80px;
-  }
-
-  .question-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 28px 28px 24px;
-    margin-bottom: 16px;
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.2s;
-    position: relative;
-  }
-  .question-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .question-card:focus-within {
-    border-color: #2B5CE640;
-    box-shadow: 0 0 0 3px #2B5CE610;
-  }
-
-  .q-number {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 8px;
-  }
-  .q-text {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.5;
-    color: var(--text);
-    margin-bottom: 6px;
-  }
-  .q-sub {
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 18px;
-    line-height: 1.6;
-  }
-
-  /* Options */
   .options { display: flex; flex-direction: column; gap: 9px; }
-  .option {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.15s;
-    user-select: none;
-    position: relative;
-  }
+  .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  @media (max-width: 480px) { .options-grid { grid-template-columns: 1fr; } }
+  .option { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 10px; cursor: pointer; transition: all 0.15s; user-select: none; }
   .option:hover { border-color: #2B5CE650; background: var(--accent-light); }
   .option input { display: none; }
-  .option.selected {
-    border-color: var(--accent);
-    background: var(--accent-light);
-  }
+  .option.selected { border-color: var(--accent); background: var(--accent-light); }
   .option.selected .opt-check { background: var(--accent); border-color: var(--accent); }
   .option.selected .opt-check::after { opacity: 1; }
-  .opt-check {
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    border: 1.5px solid #CCC;
-    flex-shrink: 0;
-    position: relative;
-    transition: all 0.15s;
-  }
-  .opt-check::after {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: #fff;
-    opacity: 0;
-    transition: opacity 0.15s;
-  }
+  .opt-check { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #CCC; flex-shrink: 0; position: relative; transition: all 0.15s; }
+  .opt-check::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 7px; height: 7px; border-radius: 50%; background: #fff; opacity: 0; transition: opacity 0.15s; }
   .option.multi .opt-check { border-radius: 4px; }
-  .option.multi.selected .opt-check::after {
-    width: 10px; height: 8px;
-    background: none;
-    border-bottom: 2px solid #fff;
-    border-right: 2px solid #fff;
-    transform: translate(-50%, -60%) rotate(45deg);
-    border-radius: 0;
-  }
-  .opt-label { font-size: 14px; font-weight: 400; color: var(--text); line-height: 1.4; }
+  .option.multi.selected .opt-check::after { width: 10px; height: 8px; background: none; border-bottom: 2px solid #fff; border-right: 2px solid #fff; transform: translate(-50%, -60%) rotate(45deg); border-radius: 0; }
+  .opt-label { font-size: 14px; color: var(--text); line-height: 1.4; }
 
-  /* Grid options */
-  .options-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 9px;
-  }
-  @media (max-width: 480px) { .options-grid { grid-template-columns: 1fr; } }
-
-  /* Text input */
-  .text-input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--text);
-    background: var(--bg);
-    outline: none;
-    resize: none;
-    transition: border-color 0.2s;
-    line-height: 1.6;
-  }
-  .text-input:focus { border-color: var(--accent); background: #fff; }
-  .text-input::placeholder { color: #BBB; }
-
-  /* Scale */
   .scale-wrap { display: flex; flex-direction: column; gap: 10px; }
-  .scale-row {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-  .scale-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 11px;
-    color: var(--muted);
-    padding: 0 2px;
-  }
-  .scale-btn {
-    flex: 1;
-    height: 42px;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    background: var(--bg);
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.15s;
-    font-family: 'DM Sans', sans-serif;
-  }
+  .scale-row { display: flex; gap: 8px; }
+  .scale-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
+  .scale-btn { flex: 1; height: 42px; border: 1.5px solid var(--border); border-radius: 8px; background: var(--bg); font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
   .scale-btn:hover { border-color: var(--accent); color: var(--accent); }
   .scale-btn.selected { background: var(--accent); border-color: var(--accent); color: #fff; }
 
-  /* Submit */
-  .submit-section {
-    margin-top: 32px;
-    text-align: center;
-  }
-  .submit-btn {
-    background: var(--text);
-    color: #fff;
-    border: none;
-    padding: 16px 48px;
-    border-radius: 100px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-    letter-spacing: 0.01em;
-  }
+  .text-input { width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); background: var(--bg); outline: none; resize: none; transition: border-color 0.2s; line-height: 1.6; }
+  .text-input:focus { border-color: var(--accent); background: #fff; }
+  .text-input::placeholder { color: #BBB; }
+
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 24px 0 8px; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .submit-section { margin-top: 32px; text-align: center; }
+  .submit-btn { background: var(--text); color: #fff; border: none; padding: 16px 48px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
   .submit-btn:hover { background: var(--accent); transform: translateY(-1px); box-shadow: 0 8px 24px #2B5CE630; }
-  .submit-btn:active { transform: translateY(0); }
   .submit-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
-  .submit-note {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 12px;
-  }
+  .submit-note { font-size: 12px; color: var(--muted); margin-top: 12px; }
 
-  /* Thank you */
-  .thankyou {
-    display: none;
-    text-align: center;
-    padding: 80px 24px;
-    max-width: 480px;
-    margin: 0 auto;
-  }
+  .thankyou { display: none; text-align: center; padding: 80px 24px; max-width: 480px; margin: 0 auto; }
   .thankyou.show { display: block; }
-  .ty-icon {
-    width: 64px; height: 64px;
-    background: #F0FDF4;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 24px;
-    font-size: 28px;
-  }
-  .thankyou h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2rem;
-    font-weight: 400;
-    margin-bottom: 12px;
-  }
+  .ty-icon { width: 64px; height: 64px; background: #F0FDF4; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 28px; }
+  .thankyou h2 { font-family: 'DM Serif Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: 12px; }
   .thankyou p { font-size: 15px; color: var(--muted); line-height: 1.7; }
-
   .form-main.hidden { display: none; }
 
-  /* Required dot */
-  .req { color: #E53E3E; margin-left: 2px; }
-
-  /* Section divider */
-  .section-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    padding: 24px 0 8px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
+  footer { text-align: center; padding: 32px 24px 40px; border-top: 1px solid var(--border); }
+  footer p { font-size: 13px; color: #999; line-height: 1.7; }
+  footer strong { font-weight: 600; color: #555; }
 </style>
 </head>
 <body>
 
 <div class="hero">
-  <div class="hero-label">Quick AI Usage Survey · 2026</div>
+  <div class="hero-label">Quick Survey · 2026</div>
   <h1>How Are You Using <em>AI</em><br>in Your Daily Life?</h1>
   <p>A short anonymous survey to understand how people across different professions are using AI tools today.</p>
   <div class="hero-meta">
     <span>Anonymous</span>
     <span>3–4 minutes</span>
-    <span>8 questions</span>
+    <span>9 questions</span>
   </div>
 </div>
 
 <div class="progress-wrap">
-  <div class="progress-bar-track">
-    <div class="progress-bar-fill" id="progressBar"></div>
-  </div>
+  <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
   <div class="progress-label">
     <span id="progressText">Not started</span>
     <span id="progressPct">0%</span>
@@ -397,31 +114,31 @@
 
     <!-- Q1 -->
     <div class="question-card" data-q="1">
-      <div class="q-number">Question 1 of 8</div>
+      <div class="q-number">Question 1 of 9</div>
       <div class="q-text">What best describes your profession?<span class="req">*</span></div>
       <div class="q-sub">Choose the option that fits most closely.</div>
-      <div class="options options-grid" data-type="single" data-required="true">
-        <label class="option"><input type="radio" name="q1" value="Dental Surgeon / Specialist" /><span class="opt-check"></span><span class="opt-label">Dental Surgeon / Specialist</span></label>
-        <label class="option"><input type="radio" name="q1" value="General Dentist" /><span class="opt-check"></span><span class="opt-label">General Dentist</span></label>
-        <label class="option"><input type="radio" name="q1" value="Dental Student / Intern" /><span class="opt-check"></span><span class="opt-label">Dental Student / Intern</span></label>
-        <label class="option"><input type="radio" name="q1" value="Medical Doctor" /><span class="opt-check"></span><span class="opt-label">Medical Doctor</span></label>
-        <label class="option"><input type="radio" name="q1" value="Government / Public Sector" /><span class="opt-check"></span><span class="opt-label">Govt. / Public Sector</span></label>
-        <label class="option"><input type="radio" name="q1" value="Educator / Researcher" /><span class="opt-check"></span><span class="opt-label">Educator / Researcher</span></label>
-        <label class="option"><input type="radio" name="q1" value="Business / Self-employed" /><span class="opt-check"></span><span class="opt-label">Business / Self-employed</span></label>
-        <label class="option"><input type="radio" name="q1" value="Other" /><span class="opt-check"></span><span class="opt-label">Other</span></label>
+      <div class="options-grid">
+        <label class="option"><input type="radio" name="q1" value="Dental Surgeon / Specialist"/><span class="opt-check"></span><span class="opt-label">Dental Surgeon / Specialist</span></label>
+        <label class="option"><input type="radio" name="q1" value="General Dentist"/><span class="opt-check"></span><span class="opt-label">General Dentist</span></label>
+        <label class="option"><input type="radio" name="q1" value="Dental Student / Intern"/><span class="opt-check"></span><span class="opt-label">Dental Student / Intern</span></label>
+        <label class="option"><input type="radio" name="q1" value="Medical Doctor"/><span class="opt-check"></span><span class="opt-label">Medical Doctor</span></label>
+        <label class="option"><input type="radio" name="q1" value="Government / Public Sector"/><span class="opt-check"></span><span class="opt-label">Govt. / Public Sector</span></label>
+        <label class="option"><input type="radio" name="q1" value="Educator / Researcher"/><span class="opt-check"></span><span class="opt-label">Educator / Researcher</span></label>
+        <label class="option"><input type="radio" name="q1" value="Business / Self-employed"/><span class="opt-check"></span><span class="opt-label">Business / Self-employed</span></label>
+        <label class="option"><input type="radio" name="q1" value="Other"/><span class="opt-check"></span><span class="opt-label">Other</span></label>
       </div>
     </div>
 
     <!-- Q2 -->
     <div class="question-card" data-q="2">
-      <div class="q-number">Question 2 of 8</div>
+      <div class="q-number">Question 2 of 9</div>
       <div class="q-text">How often do you use AI tools?<span class="req">*</span></div>
-      <div class="options" data-type="single" data-required="true">
-        <label class="option"><input type="radio" name="q2" value="Multiple times a day" /><span class="opt-check"></span><span class="opt-label">Multiple times a day</span></label>
-        <label class="option"><input type="radio" name="q2" value="Once a day" /><span class="opt-check"></span><span class="opt-label">Once a day</span></label>
-        <label class="option"><input type="radio" name="q2" value="A few times a week" /><span class="opt-check"></span><span class="opt-label">A few times a week</span></label>
-        <label class="option"><input type="radio" name="q2" value="Occasionally" /><span class="opt-check"></span><span class="opt-label">Occasionally</span></label>
-        <label class="option"><input type="radio" name="q2" value="I don't use AI tools yet" /><span class="opt-check"></span><span class="opt-label">I don't use AI tools yet</span></label>
+      <div class="options">
+        <label class="option"><input type="radio" name="q2" value="Multiple times a day"/><span class="opt-check"></span><span class="opt-label">Multiple times a day</span></label>
+        <label class="option"><input type="radio" name="q2" value="Once a day"/><span class="opt-check"></span><span class="opt-label">Once a day</span></label>
+        <label class="option"><input type="radio" name="q2" value="A few times a week"/><span class="opt-check"></span><span class="opt-label">A few times a week</span></label>
+        <label class="option"><input type="radio" name="q2" value="Occasionally"/><span class="opt-check"></span><span class="opt-label">Occasionally</span></label>
+        <label class="option"><input type="radio" name="q2" value="I don't use AI tools yet"/><span class="opt-check"></span><span class="opt-label">I don't use AI tools yet</span></label>
       </div>
     </div>
 
@@ -429,46 +146,57 @@
 
     <!-- Q3 -->
     <div class="question-card" data-q="3">
-      <div class="q-number">Question 3 of 8</div>
+      <div class="q-number">Question 3 of 9</div>
       <div class="q-text">Which AI tools do you use most?<span class="req">*</span></div>
       <div class="q-sub">Select all that apply.</div>
-      <div class="options options-grid" data-type="multi" data-required="true">
-        <label class="option multi"><input type="checkbox" name="q3" value="ChatGPT" /><span class="opt-check"></span><span class="opt-label">ChatGPT</span></label>
-        <label class="option multi"><input type="checkbox" name="q3" value="Google Gemini" /><span class="opt-check"></span><span class="opt-label">Google Gemini</span></label>
-        <label class="option multi"><input type="checkbox" name="q3" value="Claude (Anthropic)" /><span class="opt-check"></span><span class="opt-label">Claude (Anthropic)</span></label>
-        <label class="option multi"><input type="checkbox" name="q3" value="Copilot / Bing AI" /><span class="opt-check"></span><span class="opt-label">Copilot / Bing AI</span></label>
-        <label class="option multi"><input type="checkbox" name="q3" value="Canva AI / Image tools" /><span class="opt-check"></span><span class="opt-label">Canva AI / Image tools</span></label>
-        <label class="option multi"><input type="checkbox" name="q3" value="Perplexity" /><span class="opt-check"></span><span class="opt-label">Perplexity</span></label>
-        <label class="option multi"><input type="checkbox" name="q3" value="Other" /><span class="opt-check"></span><span class="opt-label">Other</span></label>
+      <div class="options-grid">
+        <label class="option multi"><input type="checkbox" name="q3" value="ChatGPT"/><span class="opt-check"></span><span class="opt-label">ChatGPT</span></label>
+        <label class="option multi"><input type="checkbox" name="q3" value="Google Gemini"/><span class="opt-check"></span><span class="opt-label">Google Gemini</span></label>
+        <label class="option multi"><input type="checkbox" name="q3" value="Claude (Anthropic)"/><span class="opt-check"></span><span class="opt-label">Claude (Anthropic)</span></label>
+        <label class="option multi"><input type="checkbox" name="q3" value="Copilot / Bing AI"/><span class="opt-check"></span><span class="opt-label">Copilot / Bing AI</span></label>
+        <label class="option multi"><input type="checkbox" name="q3" value="Canva AI / Image tools"/><span class="opt-check"></span><span class="opt-label">Canva AI / Image tools</span></label>
+        <label class="option multi"><input type="checkbox" name="q3" value="Perplexity"/><span class="opt-check"></span><span class="opt-label">Perplexity</span></label>
+        <label class="option multi"><input type="checkbox" name="q3" value="Other"/><span class="opt-check"></span><span class="opt-label">Other</span></label>
       </div>
     </div>
 
     <!-- Q4 -->
     <div class="question-card" data-q="4">
-      <div class="q-number">Question 4 of 8</div>
-      <div class="q-text">What do you mainly use AI for?<span class="req">*</span></div>
-      <div class="q-sub">Select all that apply.</div>
-      <div class="options options-grid" data-type="multi" data-required="true">
-        <label class="option multi"><input type="checkbox" name="q4" value="Writing & drafting content" /><span class="opt-check"></span><span class="opt-label">Writing & drafting content</span></label>
-        <label class="option multi"><input type="checkbox" name="q4" value="Research & information" /><span class="opt-check"></span><span class="opt-label">Research & information</span></label>
-        <label class="option multi"><input type="checkbox" name="q4" value="Clinical / medical queries" /><span class="opt-check"></span><span class="opt-label">Clinical / medical queries</span></label>
-        <label class="option multi"><input type="checkbox" name="q4" value="Creating images or visuals" /><span class="opt-check"></span><span class="opt-label">Creating images or visuals</span></label>
-        <label class="option multi"><input type="checkbox" name="q4" value="Social media & marketing" /><span class="opt-check"></span><span class="opt-label">Social media & marketing</span></label>
-        <label class="option multi"><input type="checkbox" name="q4" value="Education & studying" /><span class="opt-check"></span><span class="opt-label">Education & studying</span></label>
-        <label class="option multi"><input type="checkbox" name="q4" value="Coding & technical work" /><span class="opt-check"></span><span class="opt-label">Coding & technical work</span></label>
-        <label class="option multi"><input type="checkbox" name="q4" value="Admin & documentation" /><span class="opt-check"></span><span class="opt-label">Admin & documentation</span></label>
-        <label class="option multi"><input type="checkbox" name="q4" value="Translation / language" /><span class="opt-check"></span><span class="opt-label">Translation / language</span></label>
-        <label class="option multi"><input type="checkbox" name="q4" value="Personal productivity" /><span class="opt-check"></span><span class="opt-label">Personal productivity</span></label>
+      <div class="q-number">Question 4 of 9</div>
+      <div class="q-text">Are you currently using any paid subscription of an AI tool?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q4paid" value="Yes"/><span class="opt-check"></span><span class="opt-label">Yes</span></label>
+        <label class="option"><input type="radio" name="q4paid" value="No, I only use free versions"/><span class="opt-check"></span><span class="opt-label">No, I only use free versions</span></label>
+        <label class="option"><input type="radio" name="q4paid" value="I don't use AI tools yet"/><span class="opt-check"></span><span class="opt-label">I don't use AI tools yet</span></label>
       </div>
     </div>
 
     <!-- Q5 -->
     <div class="question-card" data-q="5">
-      <div class="q-number">Question 5 of 8</div>
+      <div class="q-number">Question 5 of 9</div>
+      <div class="q-text">What do you mainly use AI for?<span class="req">*</span></div>
+      <div class="q-sub">Select all that apply.</div>
+      <div class="options-grid">
+        <label class="option multi"><input type="checkbox" name="q5" value="Writing & drafting content"/><span class="opt-check"></span><span class="opt-label">Writing & drafting content</span></label>
+        <label class="option multi"><input type="checkbox" name="q5" value="Research & information"/><span class="opt-check"></span><span class="opt-label">Research & information</span></label>
+        <label class="option multi"><input type="checkbox" name="q5" value="Clinical / medical queries"/><span class="opt-check"></span><span class="opt-label">Clinical / medical queries</span></label>
+        <label class="option multi"><input type="checkbox" name="q5" value="Creating images or visuals"/><span class="opt-check"></span><span class="opt-label">Creating images or visuals</span></label>
+        <label class="option multi"><input type="checkbox" name="q5" value="Social media & marketing"/><span class="opt-check"></span><span class="opt-label">Social media & marketing</span></label>
+        <label class="option multi"><input type="checkbox" name="q5" value="Education & studying"/><span class="opt-check"></span><span class="opt-label">Education & studying</span></label>
+        <label class="option multi"><input type="checkbox" name="q5" value="Coding & technical work"/><span class="opt-check"></span><span class="opt-label">Coding & technical work</span></label>
+        <label class="option multi"><input type="checkbox" name="q5" value="Admin & documentation"/><span class="opt-check"></span><span class="opt-label">Admin & documentation</span></label>
+        <label class="option multi"><input type="checkbox" name="q5" value="Translation / language"/><span class="opt-check"></span><span class="opt-label">Translation / language</span></label>
+        <label class="option multi"><input type="checkbox" name="q5" value="Personal productivity"/><span class="opt-check"></span><span class="opt-label">Personal productivity</span></label>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="question-card" data-q="6">
+      <div class="q-number">Question 6 of 9</div>
       <div class="q-text">On a scale of 1–5, how satisfied are you with the AI results you currently get?<span class="req">*</span></div>
       <div class="q-sub">1 = Very unsatisfied &nbsp;·&nbsp; 5 = Very satisfied</div>
       <div class="scale-wrap">
-        <div class="scale-row" id="scaleQ5">
+        <div class="scale-row" id="scaleQ6">
           <button type="button" class="scale-btn" data-val="1">1</button>
           <button type="button" class="scale-btn" data-val="2">2</button>
           <button type="button" class="scale-btn" data-val="3">3</button>
@@ -481,42 +209,42 @@
 
     <div class="section-label">Pain Points & Opportunities</div>
 
-    <!-- Q6 -->
-    <div class="question-card" data-q="6">
-      <div class="q-number">Question 6 of 8</div>
-      <div class="q-text">What is your biggest frustration when using AI?</div>
-      <div class="q-sub">Select the one that resonates most.</div>
-      <div class="options" data-type="single">
-        <label class="option"><input type="radio" name="q6" value="Output is not specific enough to my field" /><span class="opt-check"></span><span class="opt-label">Output is not specific enough to my field</span></label>
-        <label class="option"><input type="radio" name="q6" value="Don't know how to ask / phrase my request well" /><span class="opt-check"></span><span class="opt-label">Don't know how to ask / phrase my request well</span></label>
-        <label class="option"><input type="radio" name="q6" value="Results are inconsistent or unreliable" /><span class="opt-check"></span><span class="opt-label">Results are inconsistent or unreliable</span></label>
-        <label class="option"><input type="radio" name="q6" value="Privacy / data security concerns" /><span class="opt-check"></span><span class="opt-label">Privacy / data security concerns</span></label>
-        <label class="option"><input type="radio" name="q6" value="No major frustrations" /><span class="opt-check"></span><span class="opt-label">No major frustrations</span></label>
-        <label class="option"><input type="radio" name="q6" value="I don't use AI yet" /><span class="opt-check"></span><span class="opt-label">I don't use AI yet</span></label>
-      </div>
-    </div>
-
     <!-- Q7 -->
     <div class="question-card" data-q="7">
-      <div class="q-number">Question 7 of 8</div>
-      <div class="q-text">Which of these AI-powered tools would be most useful to you?</div>
-      <div class="q-sub">Select all that you'd genuinely use.</div>
-      <div class="options" data-type="multi">
-        <label class="option multi"><input type="checkbox" name="q7" value="A tool that creates professional posters / flyers from a simple description" /><span class="opt-check"></span><span class="opt-label">A tool that creates professional posters / flyers from a simple description</span></label>
-        <label class="option multi"><input type="checkbox" name="q7" value="A tool that writes reports, letters, or documentation for you" /><span class="opt-check"></span><span class="opt-label">A tool that writes reports, letters, or documentation for you</span></label>
-        <label class="option multi"><input type="checkbox" name="q7" value="A tool that helps you search medical / clinical guidelines quickly" /><span class="opt-check"></span><span class="opt-label">A tool that helps search medical / clinical guidelines quickly</span></label>
-        <label class="option multi"><input type="checkbox" name="q7" value="A WhatsApp-based AI assistant for quick queries" /><span class="opt-check"></span><span class="opt-label">A WhatsApp-based AI assistant for quick queries</span></label>
-        <label class="option multi"><input type="checkbox" name="q7" value="A tool that helps manage patient education content" /><span class="opt-check"></span><span class="opt-label">A tool that helps manage patient education content</span></label>
-        <label class="option multi"><input type="checkbox" name="q7" value="None of the above" /><span class="opt-check"></span><span class="opt-label">None of the above</span></label>
+      <div class="q-number">Question 7 of 9</div>
+      <div class="q-text">What is your biggest frustration when using AI?</div>
+      <div class="q-sub">Select the one that resonates most.</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q7" value="Output is not specific enough to my field"/><span class="opt-check"></span><span class="opt-label">Output is not specific enough to my field</span></label>
+        <label class="option"><input type="radio" name="q7" value="Don't know how to ask / phrase my request well"/><span class="opt-check"></span><span class="opt-label">Don't know how to ask / phrase my request well</span></label>
+        <label class="option"><input type="radio" name="q7" value="Results are inconsistent or unreliable"/><span class="opt-check"></span><span class="opt-label">Results are inconsistent or unreliable</span></label>
+        <label class="option"><input type="radio" name="q7" value="Privacy / data security concerns"/><span class="opt-check"></span><span class="opt-label">Privacy / data security concerns</span></label>
+        <label class="option"><input type="radio" name="q7" value="No major frustrations"/><span class="opt-check"></span><span class="opt-label">No major frustrations</span></label>
+        <label class="option"><input type="radio" name="q7" value="I don't use AI yet"/><span class="opt-check"></span><span class="opt-label">I don't use AI yet</span></label>
       </div>
     </div>
 
     <!-- Q8 -->
     <div class="question-card" data-q="8">
-      <div class="q-number">Question 8 of 8</div>
+      <div class="q-number">Question 8 of 9</div>
+      <div class="q-text">Which of these AI-powered tools would be most useful to you?</div>
+      <div class="q-sub">Select all that you'd genuinely use.</div>
+      <div class="options">
+        <label class="option multi"><input type="checkbox" name="q8" value="A tool that creates professional posters / flyers from a simple description"/><span class="opt-check"></span><span class="opt-label">A tool that creates professional posters / flyers from a simple description</span></label>
+        <label class="option multi"><input type="checkbox" name="q8" value="A tool that writes reports, letters, or documentation for you"/><span class="opt-check"></span><span class="opt-label">A tool that writes reports, letters, or documentation for you</span></label>
+        <label class="option multi"><input type="checkbox" name="q8" value="A tool that helps search medical / clinical guidelines quickly"/><span class="opt-check"></span><span class="opt-label">A tool that helps search medical / clinical guidelines quickly</span></label>
+        <label class="option multi"><input type="checkbox" name="q8" value="A WhatsApp-based AI assistant for quick queries"/><span class="opt-check"></span><span class="opt-label">A WhatsApp-based AI assistant for quick queries</span></label>
+        <label class="option multi"><input type="checkbox" name="q8" value="A tool that helps manage patient education content"/><span class="opt-check"></span><span class="opt-label">A tool that helps manage patient education content</span></label>
+        <label class="option multi"><input type="checkbox" name="q8" value="None of the above"/><span class="opt-check"></span><span class="opt-label">None of the above</span></label>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="question-card" data-q="9">
+      <div class="q-number">Question 9 of 9</div>
       <div class="q-text">Any other thoughts? What would make AI more useful for your work?</div>
       <div class="q-sub">Optional — share anything on your mind.</div>
-      <textarea class="text-input" name="q8" rows="4" placeholder="Type your thoughts here..."></textarea>
+      <textarea class="text-input" name="q9" rows="4" placeholder="Type your thoughts here..."></textarea>
     </div>
 
     <div class="submit-section">
@@ -531,20 +259,25 @@
     <div class="ty-icon">✓</div>
     <h2>Thank you!</h2>
     <p>Your response has been recorded. This data will help shape better AI tools for professionals like you.</p>
-    <p style="margin-top: 16px; font-size: 13px; color: #AAA;">— Shiven Scalpel Studios</p>
+    <p style="margin-top:16px;font-size:13px;color:#AAA;">— Shiven Scalpel Studios</p>
   </div>
 </div>
 
+<footer>
+  <p><strong>Dr. Hrushikesh Gosai</strong><br>MDS &middot; Oral &amp; Maxillofacial Surgeon</p>
+</footer>
+
 <script>
-  // Animate cards in on load
-  const cards = document.querySelectorAll('.question-card');
-  const observer = new IntersectionObserver((entries) => {
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzyfEPHv2Au5ZnYdB3k3JRPeqDsfC2bb1L5Ns7fyoUCOe_yjq0Uye4BZT1jyUiVbFAa/exec';
+
+  // Animate cards on scroll
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
-  cards.forEach(c => observer.observe(c));
+  document.querySelectorAll('.question-card').forEach(c => observer.observe(c));
 
-  // Single select
-  document.querySelectorAll('.options[data-type="single"] .option').forEach(opt => {
+  // Single select (radio) — works for both .options and .options-grid
+  document.querySelectorAll('.option:not(.multi)').forEach(opt => {
     opt.addEventListener('click', () => {
       const name = opt.querySelector('input').name;
       document.querySelectorAll(`input[name="${name}"]`).forEach(i => i.closest('.option').classList.remove('selected'));
@@ -554,8 +287,8 @@
     });
   });
 
-  // Multi select
-  document.querySelectorAll('.options[data-type="multi"] .option').forEach(opt => {
+  // Multi select (checkbox)
+  document.querySelectorAll('.option.multi').forEach(opt => {
     opt.addEventListener('click', () => {
       const input = opt.querySelector('input');
       input.checked = !input.checked;
@@ -564,102 +297,101 @@
     });
   });
 
-  // Scale buttons
-  const scaleInputs = {};
+  // Scale
+  const scaleVal = {};
   document.querySelectorAll('.scale-row').forEach(row => {
-    const id = row.id;
-    scaleInputs[id] = null;
+    scaleVal[row.id] = null;
     row.querySelectorAll('.scale-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         row.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
-        scaleInputs[id] = btn.dataset.val;
+        scaleVal[row.id] = btn.dataset.val;
         updateProgress();
       });
     });
   });
 
+  document.querySelector('textarea[name="q9"]').addEventListener('input', updateProgress);
+
   function getAnsweredCount() {
     let count = 0;
-    // Q1, Q2, Q6 — single required
-    ['q1','q2'].forEach(name => {
-      if (document.querySelector(`input[name="${name}"]:checked`)) count++;
-    });
-    // Q3, Q4 — multi required
-    ['q3','q4'].forEach(name => {
-      if (document.querySelector(`input[name="${name}"]:checked`)) count++;
-    });
-    // Q5 — scale
-    if (scaleInputs['scaleQ5']) count++;
-    // Q6, Q7 — optional but track
-    if (document.querySelector(`input[name="q6"]:checked`)) count++;
-    if (document.querySelector(`input[name="q7"]:checked`)) count++;
-    // Q8 — text optional
-    const q8 = document.querySelector('textarea[name="q8"]');
-    if (q8 && q8.value.trim()) count++;
+    ['q1','q2'].forEach(n => { if (document.querySelector(`input[name="${n}"]:checked`)) count++; });
+    ['q3','q5'].forEach(n => { if (document.querySelector(`input[name="${n}"]:checked`)) count++; });
+    if (scaleVal['scaleQ6']) count++;
+    if (document.querySelector('input[name="q4paid"]:checked')) count++;
+    if (document.querySelector('input[name="q7"]:checked')) count++;
+    if (document.querySelector('input[name="q8"]:checked')) count++;
+    if (document.querySelector('textarea[name="q9"]').value.trim()) count++;
     return count;
   }
 
   function updateProgress() {
     const answered = getAnsweredCount();
-    const total = 8;
-    const pct = Math.round((answered / total) * 100);
+    const pct = Math.round((answered / 9) * 100);
     document.getElementById('progressBar').style.width = pct + '%';
     document.getElementById('progressPct').textContent = pct + '%';
-    document.getElementById('progressText').textContent = answered === total ? 'All done!' : `${answered} of ${total} answered`;
+    document.getElementById('progressText').textContent = answered === 9 ? 'All done!' : `${answered} of 9 answered`;
   }
 
-  document.querySelector('textarea[name="q8"]').addEventListener('input', updateProgress);
+  function getSingle(name) {
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : '';
+  }
+  function getMulti(name) {
+    return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value).join(', ');
+  }
 
   function collectData() {
-    const data = {};
-    // Singles
-    ['q1','q2','q6'].forEach(name => {
-      const checked = document.querySelector(`input[name="${name}"]:checked`);
-      data[name] = checked ? checked.value : '';
-    });
-    // Multi
-    ['q3','q4','q7'].forEach(name => {
-      const checked = [...document.querySelectorAll(`input[name="${name}"]:checked`)];
-      data[name] = checked.map(i => i.value);
-    });
-    // Scale
-    data['q5'] = scaleInputs['scaleQ5'] || '';
-    // Text
-    data['q8'] = document.querySelector('textarea[name="q8"]').value.trim();
-    data['timestamp'] = new Date().toISOString();
-    return data;
+    return {
+      timestamp: new Date().toISOString(),
+      q1:        getSingle('q1'),
+      q2:        getSingle('q2'),
+      q3:        getMulti('q3'),
+      q4paid:    getSingle('q4paid'),
+      q5:        getMulti('q5'),
+      q6:        scaleVal['scaleQ6'] || '',
+      q7:        getSingle('q7'),
+      q8:        getMulti('q8'),
+      q9:        document.querySelector('textarea[name="q9"]').value.trim()
+    };
   }
 
   function submitForm() {
-    // Validate required
-    const q1 = document.querySelector('input[name="q1"]:checked');
-    const q2 = document.querySelector('input[name="q2"]:checked');
-    const q3 = document.querySelector('input[name="q3"]:checked');
-    const q4 = document.querySelector('input[name="q4"]:checked');
-    const q5 = scaleInputs['scaleQ5'];
+    const missing = [];
+    if (!getSingle('q1')) missing.push('Q1 (Profession)');
+    if (!getSingle('q2')) missing.push('Q2 (Frequency)');
+    if (!document.querySelector('input[name="q3"]:checked')) missing.push('Q3 (Tools used)');
+    if (!document.querySelector('input[name="q5"]:checked')) missing.push('Q5 (AI usage)');
+    if (!scaleVal['scaleQ6']) missing.push('Q6 (Satisfaction)');
 
-    if (!q1 || !q2 || !q3 || !q4 || !q5) {
-      const missing = [];
-      if (!q1) missing.push('Q1 (Profession)');
-      if (!q2) missing.push('Q2 (Frequency)');
-      if (!q3) missing.push('Q3 (Tools)');
-      if (!q4) missing.push('Q4 (Usage)');
-      if (!q5) missing.push('Q5 (Satisfaction)');
+    if (missing.length > 0) {
       alert('Please answer: ' + missing.join(', '));
       return;
     }
 
-    const data = collectData();
-    console.log('Survey Response:', JSON.stringify(data, null, 2));
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
 
-    // Show thank you
-    document.getElementById('formMain').classList.add('hidden');
-    document.getElementById('thankYou').classList.add('show');
-    document.getElementById('progressBar').style.width = '100%';
-    document.getElementById('progressText').textContent = 'Completed!';
-    document.getElementById('progressPct').textContent = '100%';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(collectData())
+    })
+    .then(() => {
+      document.getElementById('formMain').classList.add('hidden');
+      document.getElementById('thankYou').classList.add('show');
+      document.getElementById('progressBar').style.width = '100%';
+      document.getElementById('progressText').textContent = 'Completed!';
+      document.getElementById('progressPct').textContent = '100%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
+    .catch(() => {
+      btn.disabled = false;
+      btn.textContent = 'Submit Responses';
+      alert('Something went wrong. Please check your connection and try again.');
+    });
   }
 </script>
 </body>
