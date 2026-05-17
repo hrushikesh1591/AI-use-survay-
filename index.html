@@ -376,7 +376,7 @@
   <div class="hero-meta">
     <span>Anonymous</span>
     <span>3–4 minutes</span>
-    <span>9 questions</span>
+    <span>8 questions</span>
   </div>
 </div>
 
@@ -397,7 +397,7 @@
 
     <!-- Q1 -->
     <div class="question-card" data-q="1">
-      <div class="q-number">Question 1 of 9</div>
+      <div class="q-number">Question 1 of 8</div>
       <div class="q-text">What best describes your profession?<span class="req">*</span></div>
       <div class="q-sub">Choose the option that fits most closely.</div>
       <div class="options options-grid" data-type="single" data-required="true">
@@ -414,7 +414,7 @@
 
     <!-- Q2 -->
     <div class="question-card" data-q="2">
-      <div class="q-number">Question 2 of 9</div>
+      <div class="q-number">Question 2 of 8</div>
       <div class="q-text">How often do you use AI tools?<span class="req">*</span></div>
       <div class="options" data-type="single" data-required="true">
         <label class="option"><input type="radio" name="q2" value="Multiple times a day" /><span class="opt-check"></span><span class="opt-label">Multiple times a day</span></label>
@@ -429,7 +429,7 @@
 
     <!-- Q3 -->
     <div class="question-card" data-q="3">
-      <div class="q-number">Question 3 of 9</div>
+      <div class="q-number">Question 3 of 8</div>
       <div class="q-text">Which AI tools do you use most?<span class="req">*</span></div>
       <div class="q-sub">Select all that apply.</div>
       <div class="options options-grid" data-type="multi" data-required="true">
@@ -445,18 +445,7 @@
 
     <!-- Q4 -->
     <div class="question-card" data-q="4">
-      <div class="q-number">Question 4 of 9</div>
-      <div class="q-text">Are you currently using any paid subscription of an AI tool?</div>
-      <div class="options" data-type="single">
-        <label class="option"><input type="radio" name="q4paid" value="Yes" /><span class="opt-check"></span><span class="opt-label">Yes</span></label>
-        <label class="option"><input type="radio" name="q4paid" value="No, I only use free versions" /><span class="opt-check"></span><span class="opt-label">No, I only use free versions</span></label>
-        <label class="option"><input type="radio" name="q4paid" value="I don't use AI tools yet" /><span class="opt-check"></span><span class="opt-label">I don't use AI tools yet</span></label>
-      </div>
-    </div>
-
-    <!-- Q5 -->
-    <div class="question-card" data-q="5">
-      <div class="q-number">Question 5 of 9</div>
+      <div class="q-number">Question 4 of 8</div>
       <div class="q-text">What do you mainly use AI for?<span class="req">*</span></div>
       <div class="q-sub">Select all that apply.</div>
       <div class="options options-grid" data-type="multi" data-required="true">
@@ -473,9 +462,9 @@
       </div>
     </div>
 
-    <!-- Q6 -->
-    <div class="question-card" data-q="6">
-      <div class="q-number">Question 6 of 9</div>
+    <!-- Q5 -->
+    <div class="question-card" data-q="5">
+      <div class="q-number">Question 5 of 8</div>
       <div class="q-text">On a scale of 1–5, how satisfied are you with the AI results you currently get?<span class="req">*</span></div>
       <div class="q-sub">1 = Very unsatisfied &nbsp;·&nbsp; 5 = Very satisfied</div>
       <div class="scale-wrap">
@@ -492,9 +481,9 @@
 
     <div class="section-label">Pain Points & Opportunities</div>
 
-    <!-- Q7 -->
-    <div class="question-card" data-q="7">
-      <div class="q-number">Question 7 of 9</div>
+    <!-- Q6 -->
+    <div class="question-card" data-q="6">
+      <div class="q-number">Question 6 of 8</div>
       <div class="q-text">What is your biggest frustration when using AI?</div>
       <div class="q-sub">Select the one that resonates most.</div>
       <div class="options" data-type="single">
@@ -507,9 +496,9 @@
       </div>
     </div>
 
-    <!-- Q8 -->
-    <div class="question-card" data-q="8">
-      <div class="q-number">Question 8 of 9</div>
+    <!-- Q7 -->
+    <div class="question-card" data-q="7">
+      <div class="q-number">Question 7 of 8</div>
       <div class="q-text">Which of these AI-powered tools would be most useful to you?</div>
       <div class="q-sub">Select all that you'd genuinely use.</div>
       <div class="options" data-type="multi">
@@ -522,12 +511,12 @@
       </div>
     </div>
 
-    <!-- Q9 -->
-    <div class="question-card" data-q="9">
-      <div class="q-number">Question 9 of 9</div>
+    <!-- Q8 -->
+    <div class="question-card" data-q="8">
+      <div class="q-number">Question 8 of 8</div>
       <div class="q-text">Any other thoughts? What would make AI more useful for your work?</div>
       <div class="q-sub">Optional — share anything on your mind.</div>
-      <textarea class="text-input" name="q9" rows="4" placeholder="Type your thoughts here..."></textarea>
+      <textarea class="text-input" name="q8" rows="4" placeholder="Type your thoughts here..."></textarea>
     </div>
 
     <div class="submit-section">
@@ -592,47 +581,52 @@
 
   function getAnsweredCount() {
     let count = 0;
+    // Q1, Q2, Q6 — single required
     ['q1','q2'].forEach(name => {
       if (document.querySelector(`input[name="${name}"]:checked`)) count++;
     });
-    if (document.querySelector(`input[name="q4paid"]:checked`)) count++;
+    // Q3, Q4 — multi required
     ['q3','q4'].forEach(name => {
       if (document.querySelector(`input[name="${name}"]:checked`)) count++;
     });
+    // Q5 — scale
     if (scaleInputs['scaleQ5']) count++;
+    // Q6, Q7 — optional but track
     if (document.querySelector(`input[name="q6"]:checked`)) count++;
     if (document.querySelector(`input[name="q7"]:checked`)) count++;
-    if (document.querySelector(`input[name="q8"]:checked`)) count++;
-    const q9 = document.querySelector('textarea[name="q9"]');
-    if (q9 && q9.value.trim()) count++;
+    // Q8 — text optional
+    const q8 = document.querySelector('textarea[name="q8"]');
+    if (q8 && q8.value.trim()) count++;
     return count;
   }
 
   function updateProgress() {
     const answered = getAnsweredCount();
-    const total = 9;
+    const total = 8;
     const pct = Math.round((answered / total) * 100);
     document.getElementById('progressBar').style.width = pct + '%';
     document.getElementById('progressPct').textContent = pct + '%';
     document.getElementById('progressText').textContent = answered === total ? 'All done!' : `${answered} of ${total} answered`;
   }
 
-  document.querySelector('textarea[name="q9"]').addEventListener('input', updateProgress);
+  document.querySelector('textarea[name="q8"]').addEventListener('input', updateProgress);
 
   function collectData() {
     const data = {};
+    // Singles
     ['q1','q2','q6'].forEach(name => {
       const checked = document.querySelector(`input[name="${name}"]:checked`);
       data[name] = checked ? checked.value : '';
     });
-    const paidChecked = document.querySelector(`input[name="q4paid"]:checked`);
-    data['q4paid'] = paidChecked ? paidChecked.value : '';
-    ['q3','q4','q7','q8'].forEach(name => {
+    // Multi
+    ['q3','q4','q7'].forEach(name => {
       const checked = [...document.querySelectorAll(`input[name="${name}"]:checked`)];
       data[name] = checked.map(i => i.value);
     });
+    // Scale
     data['q5'] = scaleInputs['scaleQ5'] || '';
-    data['q9'] = document.querySelector('textarea[name="q9"]').value.trim();
+    // Text
+    data['q8'] = document.querySelector('textarea[name="q8"]').value.trim();
     data['timestamp'] = new Date().toISOString();
     return data;
   }
@@ -657,30 +651,15 @@
     }
 
     const data = collectData();
+    console.log('Survey Response:', JSON.stringify(data, null, 2));
 
-    const btn = document.getElementById('submitBtn');
-    btn.disabled = true;
-    btn.textContent = 'Submitting...';
-
-    fetch('https://script.google.com/macros/s/AKfycbzyfEPHv2Au5ZnYdB3k3JRPeqDsfC2bb1L5Ns7fyoUCOe_yjq0Uye4BZT1jyUiVbFAa/exec', {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-    .then(() => {
-      document.getElementById('formMain').classList.add('hidden');
-      document.getElementById('thankYou').classList.add('show');
-      document.getElementById('progressBar').style.width = '100%';
-      document.getElementById('progressText').textContent = 'Completed!';
-      document.getElementById('progressPct').textContent = '100%';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    })
-    .catch(() => {
-      btn.disabled = false;
-      btn.textContent = 'Submit Responses';
-      alert('Something went wrong. Please check your connection and try again.');
-    });
+    // Show thank you
+    document.getElementById('formMain').classList.add('hidden');
+    document.getElementById('thankYou').classList.add('show');
+    document.getElementById('progressBar').style.width = '100%';
+    document.getElementById('progressText').textContent = 'Completed!';
+    document.getElementById('progressPct').textContent = '100%';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>
 </body>
